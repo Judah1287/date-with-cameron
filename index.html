@@ -7,6 +7,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
@@ -33,6 +39,7 @@
       animation: fadeIn 0.5s ease;
     }
 
+    /* Intro screen shows first */
     #intro-screen {
       display: flex;
     }
@@ -59,6 +66,11 @@
       box-shadow: 0 6px 20px rgba(255, 79, 144, 0.4);
     }
 
+    #yes-intro:hover, #yes-btn:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 10px 26px rgba(255, 79, 144, 0.5);
+    }
+
     #no-intro {
       background: #f4e6ff;
       color: #6d1f5d;
@@ -70,16 +82,16 @@
       color: white;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.95);}
-      to {opacity: 1; transform: scale(1);}
-    }
-
     .hidden-message {
       display: none;
       margin-top: 10px;
       font-size: 1rem;
       color: #7b1f5d;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: scale(0.95);}
+      to {opacity: 1; transform: scale(1);}
     }
 
     /* Hearts background */
@@ -89,6 +101,7 @@
       inset: 0;
       z-index: -1;
     }
+
     .heart {
       width: 16px;
       height: 16px;
@@ -98,6 +111,7 @@
       animation: floatUp 12s linear infinite;
       opacity: 0.7;
     }
+
     .heart::before, .heart::after {
       content: "";
       width: 16px;
@@ -106,6 +120,7 @@
       position: absolute;
       border-radius: 50%;
     }
+
     .heart::before { top: -8px; }
     .heart::after { left: 8px; }
 
@@ -113,6 +128,16 @@
       0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
       20% { opacity: 0.7; }
       100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
+    }
+
+    @media (max-width: 480px) {
+      .screen {
+        padding: 28px 18px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -124,7 +149,7 @@
   <div class="screen" id="intro-screen">
     <h1>Cameron 💗</h1>
     <p>I have a question…</p>
-    <h2 style="margin: 20px 0;">Would you like to go on a date with me?</h2>
+    <h2 style="margin: 20px 0; font-size:1.3rem;">Would you like to go on a date with me?</h2>
 
     <div>
       <button id="yes-intro">Yes 💕</button>
@@ -138,8 +163,9 @@
 
   <!-- MAIN INVITE SCREEN -->
   <main class="screen" id="main-screen">
-    <h1>November 25th 💌</h1>
-    <p>Your favorite menace, Judah, has something planned…</p>
+    <h1>FIRST ANNIVERSARY!! 💞<br>November 25th</h1>
+
+    <p>Your amazing, sensational husband has something planned…</p>
 
     <p style="font-weight:600; margin-top: 10px;">
       Will you spend our day together?
@@ -148,21 +174,47 @@
     <div style="text-align:left; margin-top:20px; background:#fff5f8; padding:12px 16px; border-radius:16px;">
       <p><strong>📅 Date:</strong> November 25th</p>
       <p><strong>⏰ Time:</strong> Be ready by 2:00 PM</p>
-      <p><strong>🚗 Drop-off:</strong> You get dropped off, and I’ll take us to the park.</p>
-      <p><strong>🌳 Plan:</strong><br>
-        • Picnic at the park (I’m bringing the food 😋)<br>
-        • We exchange gifts 🎁<br>
-        • Chill until about 6 PM<br>
-        • Go home, watch a movie, and…you know… 🤭
+
+      <p style="margin-top:8px;">
+        <strong>🚗 Drop-off / Pickup:</strong><br>
+        You can get dropped off, <em>or</em> I can come pick you up — whatever you want, baby.
       </p>
-      <p><strong>💗 Dress Code:</strong> Comfy-cute. “Judah’s girl” energy.</p>
+
+      <p style="margin-top:8px;">
+        <strong>🌳 Plan:</strong><br>
+        • Picnic at the park (we’ll figure out what snacks to bring 😋)<br>
+        • We exchange gifts and catch up and stuff — we can do that before we leave too 🎁<br>
+        • Chill at the park until like 5 PM<br>
+        • Then get something to eat 🍽️<br>
+        • Go back home, watch a movie, and free cuddles & kisses all night 😌💞
+      </p>
+
+      <p style="margin-top:8px;">
+        <strong>💗 Dress Code:</strong> BE A FLY MF LIKE ALWAYS. 🔥
+      </p>
     </div>
 
     <button id="yes-btn" style="margin-top: 20px;">Yes, absolutely 💕</button>
   </main>
 
+  <!-- FINAL PAGE -->
+  <div class="screen" id="final-screen">
+    <h1>Mwah 😘</h1>
+    <p style="margin-top:10px;">I love you so much.</p>
+    <p style="margin-top:6px;">Be there or be square 💗</p>
+
+    <p style="margin-top:20px; font-size:1rem;">
+      If you have any questions, text or call me:<br>
+      <strong>832-508-3118</strong>
+    </p>
+
+    <p style="margin-top:20px; font-size:0.9rem; color:#777;">
+      (Yes, I'm being serious.)
+    </p>
+  </div>
+
   <script>
-    // Hearts
+    // Create floating hearts
     const heartsContainer = document.getElementById("hearts-container");
     for (let i = 0; i < 20; i++) {
       const h = document.createElement("div");
@@ -177,16 +229,19 @@
 
     const introScreen = document.getElementById("intro-screen");
     const mainScreen = document.getElementById("main-screen");
+    const finalScreen = document.getElementById("final-screen");
     const yesIntro = document.getElementById("yes-intro");
     const noIntro = document.getElementById("no-intro");
     const forcedMsg = document.getElementById("forced-yes-msg");
+    const yesBtn = document.getElementById("yes-btn");
 
+    // Intro "Yes"
     yesIntro.onclick = () => {
       introScreen.style.display = "none";
       mainScreen.style.display = "flex";
     };
 
-    // No button = instantly yes
+    // "No" turns into "Yes"
     noIntro.onmouseenter = () => {
       noIntro.innerText = "Yes 💕";
       noIntro.style.background = "#ff4f90";
@@ -196,15 +251,16 @@
     noIntro.onclick = () => {
       noIntro.innerText = "Yes 💕";
       forcedMsg.style.display = "block";
-
       setTimeout(() => {
         introScreen.style.display = "none";
         mainScreen.style.display = "flex";
       }, 700);
     };
 
-    document.getElementById("yes-btn").onclick = () => {
-      alert("She said yes. Judah wins. 💘");
+    // Main "Yes" → final screen
+    yesBtn.onclick = () => {
+      mainScreen.style.display = "none";
+      finalScreen.style.display = "flex";
     };
   </script>
 </body>
